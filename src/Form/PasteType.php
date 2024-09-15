@@ -31,6 +31,16 @@ class PasteType extends AbstractType
                     '1 неделя' => '604800',
                     '1 месяц' => '2592000',
                 ],
+            ])
+            ->add('language', ChoiceType::class, [
+                'choices' => [
+                    'Русский' => 'ru',
+                    'English' => 'en',
+                    'Deutsch' => 'de',
+                    'Français' => 'fr',
+                ],
+                'placeholder' => 'Выберите язык', // Добавляет значение по умолчанию
+                'required' => false,
             ]);
     }
 

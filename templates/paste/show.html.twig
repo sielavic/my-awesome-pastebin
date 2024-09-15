@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ paste.title }}{% endblock %}
+
+{% block body %}
+    <div class="card" style="width: 92%; margin: auto;margin-top: 10px;">
+    <div class="card-body">
+        <div class="example-wrapper">
+            <div class=" text-center">
+                <h1>{{ paste.title }}</h1>
+                <p>{{ paste.content }}</p>
+
+                <a href="{{ path('paste_index') }}">Назад к списку паст</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -32,6 +32,20 @@ class Paste
     #[ORM\Column(length: 20, unique: true)]
     private string $slug;
 
+    private string $expirationDuration;
+
+    public function getExpirationDuration(): ?string
+    {
+        return $this->expirationDuration;
+    }
+
+    public function setExpirationDuration(?string $expirationDuration): static
+    {
+        $this->expirationDuration = $expirationDuration;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Paste;
 use App\Form\PasteType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +31,10 @@ class PasteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Установка срока действия
             $expirationDuration = $form->get('expirationDuration')->getData();
-            $paste->setExpiration(new \DateTime("+$expirationDuration"));
+            $currentDateTime = new DateTime();
+
+            $currentDateTime->modify('+' . $expirationDuration . 'seconds');
+            $paste->setExpiration($currentDateTime);
 
             // Генерация slug
             $paste->setSlug(bin2hex(random_bytes(5)));

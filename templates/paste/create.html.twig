@@ -1,0 +1,24 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Создание новой пасты{% endblock %}
+
+{% block body %}
+    <div class="card" style="width: 92%; margin: auto;margin-top: 10px;">
+        <div class="card-body">
+            <div class="example-wrapper">
+                <div class=" text-center">
+                    <h1>Создание новой пасты</h1>
+
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button  class="btn btn-primary save_paste" type="submit">Создать пасту</button>
+                    {{ form_end(form) }}
+
+                    <a href="{{ path('paste_index') }}">Назад к списку паст</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

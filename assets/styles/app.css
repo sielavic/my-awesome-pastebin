@@ -1,3 +1,17 @@
-body {
-    background-color: skyblue;
+body{
+    background-color: #0a3622;
+}
+
+#paste_title{
+    margin: 1%;
+}
+
+#paste_content{
+    margin: 1% 0% 0% 1%;
+}
+.save_paste{
+    margin: 1%;
+}
+#paste_expirationDuration{
+    margin: 1%;
 }

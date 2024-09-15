@@ -25,7 +25,7 @@ class PasteType extends AbstractType
             ])
             ->add('expirationDuration', ChoiceType::class, [
                 'choices' => [
-                    'Без ограничения' => '3600', // Другие значения в секундах
+                    'Без ограничения' => '2147483647',
                     '1 час' => '3600',
                     '1 день' => '86400',
                     '1 неделя' => '604800',

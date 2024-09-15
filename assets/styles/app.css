@@ -15,3 +15,24 @@ body{
 #paste_expirationDuration{
     margin: 1%;
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a, .pagination strong {
+    margin: 0 5px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination strong {
+    background-color: #007bff;
+    color: white;
+}

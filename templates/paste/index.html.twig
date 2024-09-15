@@ -13,17 +13,20 @@
             <a type="button" class="btn btn-primary" style="margin: 10px" href="{{ path('paste_create') }}">Создать новую пасту</a>
 
             <ul class="list-group">
-                {% for paste in pastes %}
+                {% for paste in pagination.items %}
                     <li class="list-group-item">
                         <a href="{{ path('paste_show', {'id': paste.id, 'slug' : paste.slug}) }}">{{ paste.title }}</a>
-
                     </li>
                 {% else %}
                     <li>Нет паст для отображения.</li>
                 {% endfor %}
             </ul>
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
+
 {% endblock %}

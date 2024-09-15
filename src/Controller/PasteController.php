@@ -3,8 +3,10 @@ namespace App\Controller;
 
 use App\Entity\Paste;
 use App\Form\PasteType;
+use App\Repository\PasteRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,12 +14,35 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PasteController extends AbstractController
 {
-    #[Route('/', name: 'paste_index')]
-    public function index(EntityManagerInterface $entityManager): Response
+
+    private $paginator;
+
+    public function __construct(PaginatorInterface $paginator)
     {
-        $pastes = $entityManager->getRepository(Paste::class)->findBy(['access' => 'public'], null, 10);
+        $this->paginator = $paginator;
+    }
+    #[Route('/', name: 'paste_index')]
+    public function index(EntityManagerInterface $entityManager,Request $request, PasteRepository $pasteRepository): Response
+    {
+        $pastes = $entityManager->getRepository(Paste::class)->findBy(['access' => 'public'], null);
+
+        $currentPaste = [];
+        foreach ($pastes as $paste) {
+            if ((new \DateTime()) < $paste->getExpiration()) {
+                $currentPaste[] = $paste;
+            }
+        }
+
+
+        $pagination = $this->paginator->paginate(
+            $currentPaste,
+            $request->query->getInt('page', 1), // текущая страница
+            10 // кол-во паст на странице
+        );
+
+
         return $this->render('paste/index.html.twig', [
-            'pastes' => $pastes,
+            'pagination' => $pagination
         ]);
     }
 
